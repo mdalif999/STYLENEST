@@ -1,0 +1,6 @@
+{
+  "name": "StyleNest",
+  "description": "StyleNest is an elegant online clothing store e-commerce application featuring product browsing, filtering, search, shopping cart management, user registration/login, order history, and an interactive admin dashboard for managing products, orders, and users.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

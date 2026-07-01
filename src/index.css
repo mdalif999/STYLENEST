@@ -1,0 +1,274 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", Georgia, Cambria, "Times New Roman", Times, serif;
+  
+  --color-gold-50: #faf7f2;
+  --color-gold-100: #f4ecdf;
+  --color-gold-200: #e7d8be;
+  --color-gold-300: #d6be96;
+  --color-gold-400: #c2a16d;
+  --color-gold-500: #b28a51;
+  --color-gold-600: #a17441;
+  --color-gold-700: #865c34;
+  --color-gold-800: #6d4b2d;
+  --color-gold-900: #593e27;
+  
+  --color-charcoal-50: #f9fafb;
+  --color-charcoal-100: #f3f4f6;
+  --color-charcoal-200: #e5e7eb;
+  --color-charcoal-300: #d1d5db;
+  --color-charcoal-400: #9ca3af;
+  --color-charcoal-500: #6b7280;
+  --color-charcoal-600: #4b5563;
+  --color-charcoal-700: #374151;
+  --color-charcoal-800: #1f2937;
+  --color-charcoal-900: #111827;
+  --color-charcoal-950: #030712;
+  
+  --animate-fade-in-up: fade-in-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-fade-in: fade-in 0.3s ease-out forwards;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+body {
+  background-color: #0A0B0D;
+  color: #E2E4E9;
+  overflow-x: hidden;
+}
+
+/* Custom CSS Overrides for "Sophisticated Dark" Theme */
+:root {
+  --theme-bg: #0A0B0D;
+  --theme-surface: #121318;
+  --theme-surface-card: #181920;
+  --theme-accent: #E5C158;
+  --theme-accent-hover: #F0D582;
+  --theme-text: #E2E4E9;
+  --theme-text-muted: #8E929E;
+  --theme-border: #23252E;
+  --theme-border-light: #1C1D24;
+}
+
+/* Force dark background on main pages and wrappers */
+#home-view,
+#shop-view,
+#product-detail-view,
+#cart-view,
+#checkout-view,
+#login-view,
+#orders-view,
+#contact-view,
+#admin-view,
+#admin-dashboard-view,
+.min-h-screen {
+  background-color: var(--theme-bg) !important;
+  color: var(--theme-text) !important;
+}
+
+/* White background elements should become elegant dark surfaces */
+.bg-white,
+[class*="bg-white/"],
+.bg-charcoal-50,
+.bg-charcoal-100,
+.bg-[#faf9f6],
+aside.bg-white,
+div.bg-white,
+section.bg-white {
+  background-color: var(--theme-surface-card) !important;
+}
+
+/* Specific opacity variations */
+[class*="bg-white/85"],
+.bg-white\/85 {
+  background-color: rgba(18, 19, 24, 0.85) !important;
+}
+
+.bg-charcoal-50\/40,
+[class*="bg-charcoal-50/"] {
+  background-color: rgba(18, 19, 24, 0.4) !important;
+}
+
+/* Charcoal 900 background elements should remain deep backgrounds */
+.bg-charcoal-900,
+.bg-charcoal-950,
+footer.bg-charcoal-900,
+div.bg-charcoal-950 {
+  background-color: var(--theme-surface) !important;
+}
+
+/* Golden elements */
+.bg-gold-50 {
+  background-color: #242015 !important;
+}
+.bg-gold-100 {
+  background-color: #38301B !important;
+}
+.bg-gold-400 {
+  background-color: var(--theme-accent) !important;
+  color: #0A0B0D !important;
+}
+.bg-gold-500 {
+  background-color: var(--theme-accent) !important;
+}
+.bg-gold-600 {
+  background-color: #C39F37 !important;
+}
+.bg-gold-800 {
+  background-color: #242015 !important;
+}
+.bg-gold-950 {
+  background-color: #15130D !important;
+}
+
+/* Red & alert states */
+.bg-red-50 {
+  background-color: #2E151A !important;
+}
+.text-red-600 {
+  color: #FFA4A4 !important;
+}
+.border-red-200 {
+  border-color: #5E1F27 !important;
+}
+.bg-red-500, .bg-red-600 {
+  background-color: #E05252 !important;
+}
+
+/* Text color transformations to white/grey */
+.text-charcoal-900,
+.text-charcoal-800,
+span.text-charcoal-900,
+h1.text-charcoal-900,
+h2.text-charcoal-900,
+h3.text-charcoal-900,
+h4.text-charcoal-900,
+p.text-charcoal-900 {
+  color: var(--theme-text) !important;
+}
+
+.text-charcoal-700,
+.text-charcoal-600,
+span.text-charcoal-700,
+p.text-charcoal-700 {
+  color: #C9CCD5 !important;
+}
+
+.text-charcoal-500 {
+  color: var(--theme-text-muted) !important;
+}
+
+.text-charcoal-400 {
+  color: #6C707E !important;
+}
+
+.text-charcoal-200 {
+  color: #A3A6B4 !important;
+}
+
+/* Gold text styles */
+.text-gold-900,
+.text-gold-800 {
+  color: #FDF9EE !important;
+}
+.text-gold-700,
+.text-gold-600 {
+  color: #ECD28F !important;
+}
+.text-gold-500,
+.text-gold-400 {
+  color: var(--theme-accent) !important;
+}
+
+/* Border overrides */
+.border-charcoal-100,
+.border-charcoal-200,
+[class*="border-charcoal-100/"],
+[class*="border-charcoal-200/"],
+hr,
+.border-t,
+.border-b,
+.border-r,
+.border-l,
+.border {
+  border-color: var(--theme-border) !important;
+}
+
+/* Form inputs & selections */
+input, select, textarea {
+  background-color: var(--theme-surface) !important;
+  color: var(--theme-text) !important;
+  border-color: var(--theme-border) !important;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--theme-accent) !important;
+  box-shadow: 0 0 0 1px var(--theme-accent) !important;
+}
+
+option {
+  background-color: var(--theme-surface-card) !important;
+  color: var(--theme-text) !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #555964 !important;
+}
+
+/* Buttons */
+button.bg-charcoal-900,
+button[class*="bg-charcoal-900"] {
+  background-color: var(--theme-accent) !important;
+  color: #0A0B0D !important;
+}
+button.bg-charcoal-900:hover,
+button[class*="bg-charcoal-900"]:hover {
+  background-color: var(--theme-accent-hover) !important;
+}
+
+/* Hovers */
+.hover\:bg-charcoal-50:hover {
+  background-color: #1F2129 !important;
+}
+.hover\:bg-charcoal-100:hover {
+  background-color: #272A35 !important;
+}
+.hover\:bg-gold-50:hover {
+  background-color: #2D2719 !important;
+}
+.hover\:text-charcoal-900:hover {
+  color: #FFFFFF !important;
+}
+
+/* Custom Scrollbar for elegant feel */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--theme-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--theme-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-text-muted);
+}
