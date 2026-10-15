@@ -39,7 +39,7 @@ export default function Footer() {
               </div>
               <div>
                 <h4 className="text-sm font-bold text-white tracking-wide uppercase">Free Shipping</h4>
-                <p className="mt-1 text-xs text-charcoal-400 leading-relaxed">On all orders over $150 with quick reliable express delivery.</p>
+                <p className="mt-1 text-xs text-charcoal-400 leading-relaxed">On all orders over ৳150 with quick reliable express delivery.</p>
               </div>
             </div>
             <div className="flex items-start gap-4">

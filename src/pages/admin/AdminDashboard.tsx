@@ -102,7 +102,7 @@ export default function AdminDashboard() {
           </div>
           <div>
             <span className="text-[10px] font-bold text-charcoal-400 uppercase tracking-wider block">Total Store Sales</span>
-            <span className="text-lg font-black text-charcoal-950">${stats.totalRevenue.toFixed(2)}</span>
+            <span className="text-lg font-black text-charcoal-950">৳{stats.totalRevenue.toFixed(2)}</span>
           </div>
         </div>
 
@@ -175,7 +175,7 @@ export default function AdminDashboard() {
 
                     <div className="text-right flex items-center gap-3">
                       <div>
-                        <p className="font-black text-charcoal-950">${o.total.toFixed(2)}</p>
+                        <p className="font-black text-charcoal-950">৳{o.total.toFixed(2)}</p>
                         <span className="text-[10px] text-charcoal-400">{o.items.length} clothes</span>
                       </div>
                       <span className={`inline-block rounded px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider ${statusCapsule}`}>

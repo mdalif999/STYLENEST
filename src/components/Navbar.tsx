@@ -46,7 +46,7 @@ export default function Navbar() {
       {/* Top Bar Promotions */}
       <div id="promo-bar" className="bg-charcoal-900 py-2 text-center text-xs font-medium tracking-wider text-white">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <p className="w-full text-center">FREE EXPRESS SHIPPING ON ORDERS OVER $150 • DISCOVER THE NEW ARRIVALS</p>
+          <p className="w-full text-center">FREE EXPRESS SHIPPING ON ORDERS OVER ৳150 • DISCOVER THE NEW ARRIVALS</p>
           <button
             onClick={() => {
               if (confirm('Are you sure you want to reset all data to default store items and sample orders? This is highly useful for grading.')) {

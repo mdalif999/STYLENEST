@@ -113,7 +113,7 @@ export default function MyOrders() {
                   </div>
                   <div>
                     <span className="text-3xs font-mono font-bold text-charcoal-400 block uppercase">GRAND TOTAL</span>
-                    <span className="font-extrabold text-gold-600">${order.total.toFixed(2)}</span>
+                    <span className="font-extrabold text-gold-600">৳{order.total.toFixed(2)}</span>
                   </div>
                 </div>
 
@@ -221,7 +221,7 @@ export default function MyOrders() {
                               </p>
                             </div>
                           </div>
-                          <span className="font-black text-charcoal-900">${(item.price * item.quantity).toFixed(2)}</span>
+                          <span className="font-black text-charcoal-900">৳{(item.price * item.quantity).toFixed(2)}</span>
                         </div>
                       ))}
                     </div>

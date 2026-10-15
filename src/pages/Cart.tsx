@@ -137,7 +137,7 @@ export default function Cart() {
                   {/* Price (Mobile labels added) */}
                   <div className="col-span-1 sm:col-span-2 flex sm:justify-center justify-between text-xs">
                     <span className="sm:hidden font-bold text-charcoal-400">Unit Price:</span>
-                    <span className="font-extrabold text-charcoal-900">${item.product.price.toFixed(2)}</span>
+                    <span className="font-extrabold text-charcoal-900">৳{item.product.price.toFixed(2)}</span>
                   </div>
 
                   {/* Quantity Actions */}
@@ -165,7 +165,7 @@ export default function Cart() {
                   {/* Subtotal Item line */}
                   <div className="col-span-1 sm:col-span-2 flex sm:justify-end justify-between text-xs">
                     <span className="sm:hidden font-bold text-charcoal-400">Line Total:</span>
-                    <span className="font-black text-charcoal-900">${(item.product.price * item.quantity).toFixed(2)}</span>
+                    <span className="font-black text-charcoal-900">৳{(item.product.price * item.quantity).toFixed(2)}</span>
                   </div>
 
                 </div>
@@ -193,14 +193,14 @@ export default function Cart() {
             <div className="space-y-3.5 text-xs">
               <div className="flex justify-between text-charcoal-600">
                 <span>Items Subtotal</span>
-                <span className="font-bold text-charcoal-900">${subtotal.toFixed(2)}</span>
+                <span className="font-bold text-charcoal-900">৳{subtotal.toFixed(2)}</span>
               </div>
 
               {promoApplied && (
                 <div className="flex justify-between text-green-600 font-medium bg-green-50 p-2.5 rounded-lg border border-green-100">
                   <span className="flex items-center gap-1"><Tag size={12} /> Code STYLE15 applied</span>
                   <div className="flex items-center gap-1">
-                    <span>-${discountAmount.toFixed(2)}</span>
+                    <span>-৳{discountAmount.toFixed(2)}</span>
                     <button onClick={handleRemovePromo} className="text-red-500 hover:text-red-700 text-2xs font-bold pl-1 uppercase">Remove</button>
                   </div>
                 </div>
@@ -209,13 +209,13 @@ export default function Cart() {
               <div className="flex justify-between text-charcoal-600">
                 <span>Express Shipping</span>
                 <span className="font-bold text-charcoal-900">
-                  {shippingFee === 0 ? 'FREE' : `$${shippingFee.toFixed(2)}`}
+                  {shippingFee === 0 ? 'FREE' : `৳${shippingFee.toFixed(2)}`}
                 </span>
               </div>
               
               {shippingFee > 0 && (
                 <p className="text-[10px] text-charcoal-400 leading-tight">
-                  💡 Tip: Add <strong>${(150 - subtotal).toFixed(0)}</strong> more to your bag to enjoy <strong>FREE shipping</strong>.
+                  💡 Tip: Add <strong>৳{(150 - subtotal).toFixed(0)}</strong> more to your bag to enjoy <strong>FREE shipping</strong>.
                 </p>
               )}
 
@@ -223,7 +223,7 @@ export default function Cart() {
 
               <div className="flex justify-between text-sm pt-1.5">
                 <span className="font-bold text-charcoal-900">Grand Total</span>
-                <span className="font-black text-gold-600 text-base">${grandTotal.toFixed(2)}</span>
+                <span className="font-black text-gold-600 text-base">৳{grandTotal.toFixed(2)}</span>
               </div>
             </div>
 

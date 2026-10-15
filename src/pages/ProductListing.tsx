@@ -213,7 +213,7 @@ export default function ProductListing() {
               <h3 className="text-xs font-extrabold uppercase tracking-widest text-charcoal-900">
                 Max Price
               </h3>
-              <span className="text-xs font-black text-gold-600">${maxPrice}</span>
+              <span className="text-xs font-black text-gold-600">৳{maxPrice}</span>
             </div>
             <div className="pt-2">
               <input
@@ -225,8 +225,8 @@ export default function ProductListing() {
                 className="w-full accent-gold-500 cursor-pointer"
               />
               <div className="flex justify-between text-[10px] text-charcoal-400 font-bold mt-1">
-                <span>$30</span>
-                <span>${absoluteMaxPrice || 250}</span>
+                <span>৳30</span>
+                <span>৳{absoluteMaxPrice || 250}</span>
               </div>
             </div>
           </div>
@@ -342,7 +342,7 @@ export default function ProductListing() {
               <div>
                 <div className="flex justify-between items-center mb-2">
                   <h4 className="text-2xs font-extrabold uppercase tracking-widest text-charcoal-400">Max Price Limit</h4>
-                  <span className="text-xs font-black text-gold-600">${maxPrice}</span>
+                  <span className="text-xs font-black text-gold-600">৳{maxPrice}</span>
                 </div>
                 <input
                   type="range"

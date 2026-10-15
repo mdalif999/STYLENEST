@@ -147,10 +147,10 @@ export default function ProductCard({ product }: ProductCardProps) {
 
         {/* Price Row */}
         <div className="mt-auto flex items-baseline gap-2">
-          <span className="text-sm font-extrabold text-charcoal-900">${product.price.toFixed(2)}</span>
+          <span className="text-sm font-extrabold text-charcoal-900">৳{product.price.toFixed(2)}</span>
           {hasDiscount && (
             <span className="text-xs text-charcoal-400 line-through font-medium">
-              ${product.originalPrice!.toFixed(2)}
+              ৳{product.originalPrice!.toFixed(2)}
             </span>
           )}
         </div>

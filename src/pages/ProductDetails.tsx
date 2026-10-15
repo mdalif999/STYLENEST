@@ -174,14 +174,14 @@ export default function ProductDetails() {
 
           {/* Pricing Stage */}
           <div className="flex items-baseline gap-3 border-b border-charcoal-100 pb-5">
-            <span className="text-2xl font-black text-charcoal-900">${product.price.toFixed(2)}</span>
+            <span className="text-2xl font-black text-charcoal-900">৳{product.price.toFixed(2)}</span>
             {product.originalPrice && product.originalPrice > product.price && (
               <>
                 <span className="text-sm font-medium text-charcoal-400 line-through">
-                  ${product.originalPrice.toFixed(2)}
+                  ৳{product.originalPrice.toFixed(2)}
                 </span>
                 <span className="inline-block rounded-md bg-red-50 text-red-600 text-[10px] font-extrabold px-2 py-0.5 border border-red-100">
-                  SAVE ${Math.round(product.originalPrice - product.price)}
+                  SAVE ৳{Math.round(product.originalPrice - product.price)}
                 </span>
               </>
             )}

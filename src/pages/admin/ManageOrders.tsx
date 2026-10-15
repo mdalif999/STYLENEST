@@ -126,7 +126,7 @@ export default function ManageOrders() {
                       ))}
                     </td>
                     <td className="py-4 px-4">
-                      <span className="font-extrabold text-charcoal-950 text-xs">${o.total.toFixed(2)}</span>
+                      <span className="font-extrabold text-charcoal-950 text-xs">৳{o.total.toFixed(2)}</span>
                       <span className="block text-[10px] text-charcoal-400 font-semibold">{o.paymentMethod}</span>
                     </td>
                     <td className="py-4 px-4 text-[10px] leading-relaxed text-charcoal-500">

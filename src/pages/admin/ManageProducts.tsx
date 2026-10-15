@@ -26,7 +26,15 @@ export default function ManageProducts() {
   const [stock, setStock] = useState(10);
   const [sizesInput, setSizesInput] = useState('S, M, L, XL');
   const [colorsInput, setColorsInput] = useState('Off-White, Sage Green');
-  const [imageUrl, setImageUrl] = useState('');
+  const [imageUrls, setImageUrls] = useState<string[]>(['']);
+  const [isFeatured, setIsFeatured] = useState(false);
+
+  // Image list helpers (support editing multiple product photos)
+  const handleAddImage = () => setImageUrls(prev => [...prev, '']);
+  const handleImageChange = (idx: number, value: string) =>
+    setImageUrls(prev => prev.map((u, i) => (i === idx ? value : u)));
+  const handleRemoveImage = (idx: number) =>
+    setImageUrls(prev => prev.filter((_, i) => i !== idx));
 
   // Search filter
   const filteredList = useMemo(() => {
@@ -45,7 +53,8 @@ export default function ManageProducts() {
     setStock(10);
     setSizesInput('S, M, L, XL');
     setColorsInput('Off-White, Black');
-    setImageUrl('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&auto=format&fit=crop&q=80');
+    setImageUrls(['https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&auto=format&fit=crop&q=80']);
+    setIsFeatured(true);
     setIsModalOpen(true);
   };
 
@@ -59,14 +68,15 @@ export default function ManageProducts() {
     setStock(p.stock);
     setSizesInput(p.sizes.join(', '));
     setColorsInput(p.colors.join(', '));
-    setImageUrl(p.images[0] || '');
+    setImageUrls(p.images.length > 0 ? [...p.images] : ['']);
+    setIsFeatured(p.isFeatured);
     setIsModalOpen(true);
   };
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!name.trim() || !description.trim() || !imageUrl.trim()) {
+    if (!name.trim() || !description.trim()) {
       alert('Please fill out all required fields.');
       return;
     }
@@ -74,6 +84,12 @@ export default function ManageProducts() {
     const sizes = sizesInput.split(',').map(s => s.trim()).filter(Boolean);
     const colors = colorsInput.split(',').map(c => c.trim()).filter(Boolean);
     const origPrice = originalPrice.trim() ? Number(originalPrice) : undefined;
+    const images = imageUrls.map(u => u.trim()).filter(Boolean);
+
+    if (images.length === 0) {
+      alert('Please provide at least one product image URL.');
+      return;
+    }
 
     const commonData = {
       name: name.trim(),
@@ -84,8 +100,8 @@ export default function ManageProducts() {
       stock: Number(stock),
       sizes,
       colors,
-      images: [imageUrl.trim()],
-      isFeatured: editingProduct ? editingProduct.isFeatured : false
+      images,
+      isFeatured
     };
 
     if (editingProduct) {
@@ -96,8 +112,7 @@ export default function ManageProducts() {
       alert('Product updated successfully!');
     } else {
       addProduct({
-        ...commonData,
-        isFeatured: true // brand additions made featured by default
+        ...commonData
       });
       alert('New clothing article appended to catalog!');
     }
@@ -176,9 +191,9 @@ export default function ManageProducts() {
                   </td>
                   <td className="py-4 px-4 capitalize font-semibold text-charcoal-800">{p.category}</td>
                   <td className="py-4 px-4">
-                    <span className="font-extrabold text-charcoal-900">${p.price.toFixed(2)}</span>
+                    <span className="font-extrabold text-charcoal-900">৳{p.price.toFixed(2)}</span>
                     {p.originalPrice && (
-                      <span className="block text-[10px] text-charcoal-400 line-through">${p.originalPrice.toFixed(2)}</span>
+                      <span className="block text-[10px] text-charcoal-400 line-through">৳{p.originalPrice.toFixed(2)}</span>
                     )}
                   </td>
                   <td className="py-4 px-4">
@@ -280,7 +295,7 @@ export default function ManageProducts() {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-1">
-                    <label className="text-[10px] font-bold text-charcoal-500 uppercase">Sale Price ($) *</label>
+                    <label className="text-[10px] font-bold text-charcoal-500 uppercase">Sale Price (৳) *</label>
                     <input
                       type="number"
                       required
@@ -292,7 +307,7 @@ export default function ManageProducts() {
                   </div>
 
                   <div className="space-y-1">
-                    <label className="text-[10px] font-bold text-charcoal-500 uppercase">Original Price ($) (Optional)</label>
+                    <label className="text-[10px] font-bold text-charcoal-500 uppercase">Original Price (৳) (Optional)</label>
                     <input
                       type="number"
                       min="1"
@@ -354,17 +369,73 @@ export default function ManageProducts() {
                   />
                 </div>
 
+                {/* Multi-image manager with live previews */}
                 <div className="space-y-1">
-                  <label className="text-[10px] font-bold text-charcoal-500 uppercase">Cover Image URL *</label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="Paste Unsplash image URL..."
-                    value={imageUrl}
-                    onChange={(e) => setImageUrl(e.target.value)}
-                    className="w-full rounded-lg border border-charcoal-200 bg-charcoal-50 py-2 px-3 text-xs outline-none focus:border-gold-400 focus:bg-white"
-                  />
+                  <label className="text-[10px] font-bold text-charcoal-500 uppercase">Product Images ({imageUrls.filter(u => u.trim()).length}) *</label>
+                  <p className="text-[10px] text-charcoal-400">First image is the main cover. Paste an image URL to preview it live.</p>
+
+                  <div className="space-y-2 mt-2">
+                    {imageUrls.map((url, idx) => (
+                      <div key={idx} className="flex items-start gap-2">
+                        <div className="h-14 w-14 shrink-0 rounded-lg overflow-hidden bg-charcoal-100 border border-charcoal-200 flex items-center justify-center">
+                          {url.trim() ? (
+                            <img
+                              src={url}
+                              alt={`Preview ${idx + 1}`}
+                              className="h-full w-full object-cover"
+                              referrerPolicy="no-referrer"
+                            />
+                          ) : (
+                            <span className="text-[9px] text-charcoal-400 text-center leading-tight px-1">No img</span>
+                          )}
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex items-center gap-1">
+                            <input
+                              type="text"
+                              placeholder="Paste image URL (Unsplash, etc.)..."
+                              value={url}
+                              onChange={(e) => handleImageChange(idx, e.target.value)}
+                              className="flex-1 rounded-lg border border-charcoal-200 bg-charcoal-50 py-2 px-3 text-xs outline-none focus:border-gold-400 focus:bg-white"
+                            />
+                            {imageUrls.length > 1 && (
+                              <button
+                                type="button"
+                                onClick={() => handleRemoveImage(idx)}
+                                className="p-2 rounded-lg border border-charcoal-200 text-charcoal-500 hover:border-red-400 hover:text-red-600 hover:bg-red-50 transition-all cursor-pointer shrink-0"
+                                title="Remove this image"
+                              >
+                                <Trash2 size={14} />
+                              </button>
+                            )}
+                          </div>
+                          {idx === 0 && (
+                            <span className="text-[9px] font-bold text-gold-600 uppercase tracking-wider">Cover Image</span>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={handleAddImage}
+                    className="mt-2 inline-flex items-center gap-1 rounded-lg border border-dashed border-charcoal-300 px-3 py-1.5 text-[10px] font-bold text-charcoal-600 hover:border-gold-400 hover:text-gold-600 transition-all cursor-pointer"
+                  >
+                    <Plus size={12} /> Add Another Image
+                  </button>
                 </div>
+
+                {/* Featured toggle */}
+                <label className="flex items-center gap-2 cursor-pointer select-none w-fit pt-1">
+                  <input
+                    type="checkbox"
+                    checked={isFeatured}
+                    onChange={(e) => setIsFeatured(e.target.checked)}
+                    className="h-4 w-4 accent-gold-500 cursor-pointer"
+                  />
+                  <span className="text-[10px] font-bold text-charcoal-600 uppercase">Feature on Homepage</span>
+                </label>
 
                 <div className="flex gap-3">
                   <button

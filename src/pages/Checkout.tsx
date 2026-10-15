@@ -120,7 +120,7 @@ export default function Checkout() {
 
           <div className="pt-3 flex justify-between items-center font-bold text-xs">
             <span className="text-charcoal-900">Paid Grand Total</span>
-            <span className="text-base font-black text-gold-600">${grandTotal.toFixed(2)}</span>
+            <span className="text-base font-black text-gold-600">৳{grandTotal.toFixed(2)}</span>
           </div>
         </div>
 
@@ -332,7 +332,7 @@ export default function Checkout() {
                   : 'bg-charcoal-900 hover:bg-gold-500'
               }`}
             >
-              {isSubmitting ? 'Verifying secure authorization...' : `Authorize Secure Order • $${grandTotal.toFixed(2)}`}
+              {isSubmitting ? 'Verifying secure authorization...' : `Authorize Secure Order • ৳${grandTotal.toFixed(2)}`}
             </button>
           </form>
         </div>
@@ -360,7 +360,7 @@ export default function Checkout() {
                     </div>
                   </div>
                   <span className="font-extrabold text-charcoal-900 shrink-0">
-                    ${(item.product.price * item.quantity).toFixed(2)}
+                    ৳{(item.product.price * item.quantity).toFixed(2)}
                   </span>
                 </div>
               ))}
@@ -370,22 +370,22 @@ export default function Checkout() {
             <div className="space-y-2.5 pt-4 text-xs text-charcoal-600">
               <div className="flex justify-between">
                 <span>Items Subtotal</span>
-                <span>${subtotal.toFixed(2)}</span>
+                <span>৳{subtotal.toFixed(2)}</span>
               </div>
               {discountPercent > 0 && (
                 <div className="flex justify-between text-green-600">
                   <span>Student Coupon (15% Off)</span>
-                  <span>-${discountAmount.toFixed(2)}</span>
+                  <span>-৳{discountAmount.toFixed(2)}</span>
                 </div>
               )}
               <div className="flex justify-between">
                 <span>Express Courier Shipping</span>
-                <span>{shippingFee === 0 ? 'FREE' : `$${shippingFee.toFixed(2)}`}</span>
+                <span>{shippingFee === 0 ? 'FREE' : `৳${shippingFee.toFixed(2)}`}</span>
               </div>
 
               <div className="flex justify-between pt-2 border-t border-charcoal-100 text-sm font-bold text-charcoal-900">
                 <span>Total Payment Amount</span>
-                <span className="font-black text-gold-600 text-base">${grandTotal.toFixed(2)}</span>
+                <span className="font-black text-gold-600 text-base">৳{grandTotal.toFixed(2)}</span>
               </div>
             </div>
 
