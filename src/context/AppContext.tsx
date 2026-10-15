@@ -34,7 +34,7 @@ interface AppContextProps {
   clearCart: () => void;
   
   // Checkout
-  placeOrder: (shipping: { address: string; city: string; postalCode: string; country: string }, phone: string, paymentMethod: string) => { success: boolean; orderId?: string };
+  placeOrder: (shipping: { address: string; city: string; postalCode: string; country: string }, phone: string, paymentMethod: string) => { success: boolean; orderId?: string; error?: string };
   
   // Product Reviews
   addReview: (productId: string, rating: number, comment: string) => void;
